@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Globalstate } from "../../../Globalstate";
-import Paypalbtn from "./Paypalbtn";
+// import Paypalbtn from "./Paypalbtn";
+import StripeCheckout from "react-stripe-checkout";
 
 import "./cart.css";
 import axios from "axios";
@@ -91,6 +92,9 @@ function Cart() {
       <h2 style={{ textAlign: "center", fontSize: "3rem" }}>Cart is Empty</h2>
     );
 
+     async function handletoken(token) {
+    console.log(token);
+  }
   return (
     <div>
       {cart.map((product) => (
@@ -116,8 +120,12 @@ function Cart() {
       ))}
       <div className="total">
         <h3>Total: $ {total}</h3>
-        <Paypalbtn total={total}
-        tranSuccess={tranSuccess}/>
+        <StripeCheckout
+              stripeKey="pk_test_51KZ7tgSCLtg0NGDAlaK5C61XEPGHKE4zH0UbTO6eGe0bd23CKV2Z6tEzWkyvA9Yf3O2Fm2hARJfc9FoshOFiNuFT00q3zNCxlL"
+              token={handletoken}
+              billingAddress
+              amount={total*100}
+            />
       </div>
     </div>
   );

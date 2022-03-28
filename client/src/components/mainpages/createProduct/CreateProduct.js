@@ -5,16 +5,19 @@ import { Globalstate } from "../../../Globalstate";
 import "./CreateProduct.css";
 import { useHistory, useParams } from "react-router-dom";
 
+
+const initialState = {
+  product_id: "",
+  title: "",
+  price: 0,
+  description: "",
+  content: "",
+  category: "",
+  _id: "",
+};
+
 function CreateProduct() {
-  const initialState = {
-    product_id: "",
-    title: "",
-    price: 0,
-    description: "",
-    content: "",
-    category: "",
-    _id: "",
-  };
+ 
   const state = useContext(Globalstate);
   const [product, setproduct] = useState(initialState);
   const [category] = state.categoryAPI.category;
